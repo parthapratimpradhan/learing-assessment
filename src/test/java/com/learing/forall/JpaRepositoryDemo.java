@@ -2,13 +2,13 @@ package com.learing.forall;
 
 
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import com.learing.forall.domain.Department;
 import com.learing.forall.repo.DepartmentRepository;
@@ -31,12 +31,12 @@ public class JpaRepositoryDemo {
     @Test
     public void runJpaRepositoryMethods() {
 
-        departmentRepository.save(new Department("Humanities"));
-        departmentRepository.flush();
-
-        departmentRepository.saveAndFlush(new Department("Fine Arts"));
-
-        departmentRepository.save(new Department("Social Science"));
+//        departmentRepository.save(new Department("Humanities"));
+//        departmentRepository.flush();
+//
+//        departmentRepository.saveAndFlush(new Department("Fine Arts"));
+//
+//        departmentRepository.save(new Department("Social Science"));
 
         System.out.println("\n*************3 Departments*************");
         departmentRepository.findAll().forEach(System.out::println);
