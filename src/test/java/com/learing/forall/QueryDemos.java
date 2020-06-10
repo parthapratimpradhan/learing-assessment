@@ -166,7 +166,8 @@ public class QueryDemos {
 
     /**
      * Queries using Query by Example
-     *
+     * DepartmentRepository extends JpaRepository and 
+     * JpaRepository extends QueryByExampleExecutor
      * Departments persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
      */
