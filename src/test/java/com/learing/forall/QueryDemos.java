@@ -136,6 +136,9 @@ public class QueryDemos {
 
     /**
      * Queries that use Paging and Sorting
+     * Paging and sorting 
+     *Page<Course> findByCredits(@Param("credits") int credits, Pageable pageable); in CourseRepository and
+     *StaffRepository extends PagingAndSortingRepository<Staff,Integer>
      *
      * Courses persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
