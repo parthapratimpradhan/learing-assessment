@@ -104,7 +104,7 @@ public class QueryDemos {
 
     /**
      * @Query Queries
-     *
+     * jpqlQueries reference from CourseRepository written as '@query'
      * Courses persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
      */
