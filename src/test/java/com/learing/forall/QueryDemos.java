@@ -67,6 +67,9 @@ public class QueryDemos {
      * Advanced Property Expression Queries
      *
      * Students persisted to H2 in-Memory database at startup.
+     * intermediateQueryExamples 
+     * Query method clauses and expressions
+     * <a href="https://docs.spring.io/spring-data/jpa/docs/2.0.0.M1/reference/html/#repository-query-keywords">ref</a>
      * @see UniversityApplication
      */
     @Test
