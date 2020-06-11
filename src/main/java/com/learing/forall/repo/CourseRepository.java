@@ -1,6 +1,7 @@
  package com.learing.forall.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,8 @@ import com.learing.forall.view.CourseView;
  */
 public interface CourseRepository extends CrudRepository<Course,Integer>{
 
-    Course findByName(String name);
+    Optional<Course> findByName(String name);
+    //Course findByName(String name);
 
     List<Course> findByDepartmentChairMemberLastName(String chair);
 
@@ -35,6 +37,12 @@ public interface CourseRepository extends CrudRepository<Course,Integer>{
     List<Course> findByCredits(@Param("credits") int credits);
 
     Page<Course> findByCredits(@Param("credits") int credits, Pageable pageable);
+
+    Course findByDepartmentName(String deptName);
+
+    @Query("Select new com.learing.forall.view.CourseView" +
+            "(c.name, c.instructor.member.lastName, c.department.name) from Course c where c.name=?1")
+    Optional<CourseView> getCourseViewByName(String name);
 
 //      Common Querying Mistake
 //      Uncomment to Debug.

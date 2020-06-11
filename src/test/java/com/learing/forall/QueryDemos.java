@@ -67,9 +67,6 @@ public class QueryDemos {
      * Advanced Property Expression Queries
      *
      * Students persisted to H2 in-Memory database at startup.
-     * intermediateQueryExamples 
-     * Query method clauses and expressions
-     * <a href="https://docs.spring.io/spring-data/jpa/docs/2.0.0.M1/reference/html/#repository-query-keywords">ref</a>
      * @see UniversityApplication
      */
     @Test
@@ -104,7 +101,7 @@ public class QueryDemos {
 
     /**
      * @Query Queries
-     * jpqlQueries reference from CourseRepository written as '@query'
+     *
      * Courses persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
      */
@@ -121,24 +118,22 @@ public class QueryDemos {
 
 
         //*******Complex Queries********
-        Course english101 = courseRepository.findByName("English 101");
+        //Leverage Optional.ifPresent to avoid null checks
+        courseRepository.findByName("English 101").ifPresent(english101 -> {
+            //Select c from Course c join c.prerequisites p where p.id = ?1
+            System.out.println("\nFind Courses where English 101 is a prerequisite");
+            courseRepository.findCourseByPrerequisite(english101.getId())
+                    .forEach(System.out::println);
 
-        //Select c from Course c join c.prerequisites p where p.id = ?1
-        System.out.println("\nFind Courses where English 101 is a prerequisite");
-        courseRepository.findCourseByPrerequisite(english101.getId())
-                .forEach(System.out::println);
-
-        //Select new com.learing.forall.view.CourseView
-        //  (c.name, c.instructor.member.lastName, c.department.name) from Course c where c.id=?1
-        System.out.println("\nCourseView for English 101 \n" +
-                courseRepository.getCourseView(english101.getId()));
+            //Select new com.example.university.view.CourseView
+            //  (c.name, c.instructor.member.lastName, c.department.name) from Course c where c.id=?1
+            System.out.println("\nCourseView for English 101 \n" +
+                    courseRepository.getCourseView(english101.getId()));
+        });
     }
 
     /**
      * Queries that use Paging and Sorting
-     * Paging and sorting 
-     *Page<Course> findByCredits(@Param("credits") int credits, Pageable pageable); in CourseRepository and
-     *StaffRepository extends PagingAndSortingRepository<Staff,Integer>
      *
      * Courses persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
@@ -166,8 +161,7 @@ public class QueryDemos {
 
     /**
      * Queries using Query by Example
-     * DepartmentRepository extends JpaRepository and 
-     * JpaRepository extends QueryByExampleExecutor
+     *
      * Departments persisted to H2 in-Memory database at startup.
      * @see UniversityApplication
      */
